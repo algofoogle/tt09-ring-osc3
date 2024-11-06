@@ -20,10 +20,12 @@ module tt_um_algofoogle_tt09_ring_osc (
     .osc_out(uo_out[0])
   );
 
-  assign uo_out[7:1] = 7'b000_0000;
+  assign uo_out[7:2] = 6'b0000_00;
 
   // List all unused inputs to prevent warnings
-  wire _unused = &{ui_in, uio_in, ena, clk, rst_n, 1'b0};
+  wire dummy = &{ui_in, uio_in, ena, rst_n};
+  assign uo_out[1] = dummy;
+  wire _unused = &{clk, 1'b0};
 
   assign uio_oe = 8'b0000_0000; // UIOs unused but make them inputs by default.
   assign uio_out = 8'b0000_0000;
