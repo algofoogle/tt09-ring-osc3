@@ -32,7 +32,7 @@ module amm_inverter (
 endmodule
 
 module ring_osc #(
-    parameter DEPTH = 5 // Becomes DEPTH*2+1 inverters to ensure it is odd.
+    parameter DEPTH = 500 // Becomes DEPTH*2+1 inverters to ensure it is odd.
 ) (
     output osc_out
 );
@@ -41,18 +41,8 @@ module ring_osc #(
     wire [DEPTH*2:0] inv_out;
     assign inv_in[DEPTH*2:1] = inv_out[DEPTH*2-1:0]; // Chain.
     assign inv_in[0] = inv_out[DEPTH*2]; // Loop back.
-    //SMELL: 'generate' this or use an instance array:
-    (* keep *) amm_inverter inv0  ( .a(inv_in[0 ]),  .y(inv_out[0 ]) );
-    (* keep *) amm_inverter inv1  ( .a(inv_in[1 ]),  .y(inv_out[1 ]) );
-    (* keep *) amm_inverter inv2  ( .a(inv_in[2 ]),  .y(inv_out[2 ]) );
-    (* keep *) amm_inverter inv3  ( .a(inv_in[3 ]),  .y(inv_out[3 ]) );
-    (* keep *) amm_inverter inv4  ( .a(inv_in[4 ]),  .y(inv_out[4 ]) );
-    (* keep *) amm_inverter inv5  ( .a(inv_in[5 ]),  .y(inv_out[5 ]) );
-    (* keep *) amm_inverter inv6  ( .a(inv_in[6 ]),  .y(inv_out[6 ]) );
-    (* keep *) amm_inverter inv7  ( .a(inv_in[7 ]),  .y(inv_out[7 ]) );
-    (* keep *) amm_inverter inv8  ( .a(inv_in[8 ]),  .y(inv_out[8 ]) );
-    (* keep *) amm_inverter inv9  ( .a(inv_in[9 ]),  .y(inv_out[9 ]) );
-    (* keep *) amm_inverter inv10 ( .a(inv_in[10]),  .y(inv_out[10]) );
+    // Generate an instance array of inverters, chained and looped back via the 2 assignments above:
+    (* keep *) amm_inverter inv_array [DEPTH*2:0] ( .a(inv_in), .y(inv_out) );
     assign osc_out = inv_in[0];
 
 endmodule
