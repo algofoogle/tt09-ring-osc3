@@ -2,7 +2,11 @@
 
 # Simple TT09 ring oscillator implemented with Verilog
 
+This is a very basic ring oscillator implemented in Verilog.
+
 - [Read the documentation for project](docs/info.md)
+
+![Ring oscillator inverter cells](docs/tt09-ring-osc.png)
 
 ## What is Tiny Tapeout?
 
