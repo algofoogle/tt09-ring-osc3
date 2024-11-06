@@ -7,14 +7,8 @@ You can also include images in this folder and reference them in the markdown. E
 512 kb in size, and the combined size of all images must be less than 1 MB.
 -->
 
-## How it works
+## What is this?
 
-Explain how your project works
+Everyone has done a ring oscillator using inverter cells. Now it's my turn!
 
-## How to test
-
-Explain how to use your project
-
-## External hardware
-
-List external hardware used in your project (e.g. PMOD, LED display, etc), if any
+This simple example uses verilog to instantiate a ring of (an odd number of) `sky130_fd_sc_hd__inv_2` cells.
