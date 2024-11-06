@@ -39,7 +39,9 @@ module ring_osc #(
 
     wire [DEPTH*2:0] inv_in;
     wire [DEPTH*2:0] inv_out;
+    assign inv_in[DEPTH*2:1] = inv_out[DEPTH*2-1:0]; // Chain.
     assign inv_in[0] = inv_out[DEPTH*2]; // Loop back.
+    //SMELL: 'generate' this or use an instance array:
     (* keep *) amm_inverter inv0  ( .a(inv_in[0 ]),  .y(inv_out[0 ]) );
     (* keep *) amm_inverter inv1  ( .a(inv_in[1 ]),  .y(inv_out[1 ]) );
     (* keep *) amm_inverter inv2  ( .a(inv_in[2 ]),  .y(inv_out[2 ]) );
