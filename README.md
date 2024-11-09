@@ -1,12 +1,13 @@
 ![](../../workflows/gds/badge.svg) ![](../../workflows/docs/badge.svg) ![](../../workflows/test/badge.svg) ![](../../workflows/fpga/badge.svg)
 
-# Simple TT09 ring oscillator implemented with Verilog
+# Simple TT09 ring oscillators implemented with Verilog
 
-This is a very basic ring oscillator implemented in Verilog.
+This contains 4 very basic ring oscillators implemented in Verilog.
+
+> [!NOTE]
+> See also, the simpler single ring version: [tt09-ring-osc](https://github.com/algofoogle/tt09-ring-osc)
 
 - [Read the documentation for project](docs/info.md)
-
-![Ring oscillator inverter cells](docs/tt09-ring-osc.png)
 
 ## What is Tiny Tapeout?
 

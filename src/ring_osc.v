@@ -46,3 +46,4 @@ module ring_osc #(
     assign osc_out = inv_in[0];
 
 endmodule
+
