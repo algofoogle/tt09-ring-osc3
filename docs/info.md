@@ -14,8 +14,8 @@ Everyone has done a ring oscillator using inverter cells. Now it's my turn!
 I already submitted [tt09-ring-osc](https://github.com/algofoogle/tt09-ring-osc) on TT09 and rather than muck that up with extra stuff I decided to submit this alternate version which features:
 
 *   4 simple independent rings instead of 1, hoping to run at different speeds:
-    *   `ring_125`: 125 inverters, *maybe* will output 112MHz? Could be too fast for IO.
-    *   `ring_251`: 251 inverters, hopefully goot for ~56MHz.
+    *   `ring_125`: 125 inverters, *maybe* 112MHz out? Could be too fast for IO.
+    *   `ring_251`: 251 inverters, hopefully good for ~56MHz.
     *   `ring_501`: 501 inverters, ~28MHz.
     *   `ring_1001`: 1001 inverters, ~14MHz.
 
