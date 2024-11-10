@@ -18,6 +18,7 @@ I already submitted [tt09-ring-osc](https://github.com/algofoogle/tt09-ring-osc)
     *   `ring_251`: 251 inverters, hopefully good for ~56MHz.
     *   `ring_501`: 501 inverters, ~28MHz.
     *   `ring_1001`: 1001 inverters, ~14MHz.
+*   Some other PWM experiments on faster ring oscillators.
 
 Approximate frequences are estimated on the assumption that each inverter introduces a delay of ~70ps.
 

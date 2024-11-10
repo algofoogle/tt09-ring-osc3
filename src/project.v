@@ -46,22 +46,27 @@ module tt_um_algofoogle_tt09_ring_osc2 (
   reg [5:0] c2;
   always @(posedge fast_osc) c2 <= c2 + 1;
   assign uo_out[6] = c2[5]; // ~9MHz?
+  // PWM output ~137MHz, ui_in[1:0] compared with c2[1:0]
+  assign uio_out[6] = c2[1:0] < ui_in[1:0]; // pwm2_out
   
-  // VERY FAST ring (13 inv) for another couner and PWM experiment: ~1.1GHz:
+  // VERY FAST ring (13 inv) for another counter and PWM experiment: ~1.1GHz:
   wire vfast_osc;
   ring_osc #(.DEPTH(6)) ring_13 (.osc_out(vfast_osc));
   // Counter to divide down to (hopefully) ~34MHz:
   reg [4:0] c3;
   always @(posedge vfast_osc) c3 <= c3 + 1;
-  assign uo_out[7] = c2[5]; // ~34MHz?
-
+  assign uo_out[7] = c3[4]; // ~34MHz?
+  // PWM output ~275MHz, ui_in[3:2] compared with c3[1:0]
+  assign uio_out[7] = c3[1:0] < ui_in[3:2]; // pwm3_out
+  // PWM output ~137MHz, ui_in[7:5] compared with c3[2:0]
+  assign uio_out[1] = c3[2:0] < ui_in[7:5]; // pwm3a_out
 
   // List all unused inputs to prevent warnings
   wire dummy = &{ui_in, uio_in, ena, rst_n};
-  assign uio_out[7] = dummy;
+  assign uio_out[0] = dummy;
   wire _unused = &{clk, 1'b0};
 
-  assign uio_oe = 8'b1000_0000; // 7 UIOs are unused; make them inputs by default.
-  assign uio_out[6:0] = 7'b000_0000;
+  assign uio_oe = 8'b1100_0011;
+  assign uio_out[5:2] = 4'b0000;
 
 endmodule
