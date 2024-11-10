@@ -1,11 +1,11 @@
 ![](../../workflows/gds/badge.svg) ![](../../workflows/docs/badge.svg) ![](../../workflows/test/badge.svg) ![](../../workflows/fpga/badge.svg)
 
-# Simple TT09 ring oscillators implemented with Verilog
+# Another simple TT09 ring oscillator experiment implemented with Verilog
 
-This contains 4 very basic ring oscillators implemented in Verilog.
+This contains 1 very basic configurable ring oscillator implemented in Verilog.
 
 > [!NOTE]
-> See also, the simpler single ring version: [tt09-ring-osc](https://github.com/algofoogle/tt09-ring-osc)
+> See also: [tt09-ring-osc](https://github.com/algofoogle/tt09-ring-osc) and [tt09-ring-osc2](https://github.com/algofoogle/tt09-ring-osc2)
 
 - [Read the documentation for project](docs/info.md)
 

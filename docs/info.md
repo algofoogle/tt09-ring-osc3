@@ -9,18 +9,9 @@ You can also include images in this folder and reference them in the markdown. E
 
 ## What is this?
 
-Everyone has done a ring oscillator using inverter cells. Now it's my turn!
+See [tt09-ring-osc](https://github.com/algofoogle/tt09-ring-osc) and [tt09-ring-osc2](https://github.com/algofoogle/tt09-ring-osc2) for my other ring oscillator experiments on TT09.
 
-I already submitted [tt09-ring-osc](https://github.com/algofoogle/tt09-ring-osc) on TT09 and rather than muck that up with extra stuff I decided to submit this alternate version which features:
+This one has a configurable ring oscillator; the feedback can be tapped at different parts of the chain.
 
-*   4 simple independent rings instead of 1, hoping to run at different speeds:
-    *   `ring_125`: 125 inverters, *maybe* 112MHz out? Could be too fast for IO.
-    *   `ring_251`: 251 inverters, hopefully good for ~56MHz.
-    *   `ring_501`: 501 inverters, ~28MHz.
-    *   `ring_1001`: 1001 inverters, ~14MHz.
-*   Some other PWM experiments on faster ring oscillators.
-
-Approximate frequences are estimated on the assumption that each inverter introduces a delay of ~70ps.
-
-These use verilog to instantiate the rings of (an odd number of) `sky130_fd_sc_hd__inv_2` cells.
+This use verilog to instantiate the rings of (an odd number of) `sky130_fd_sc_hd__inv_2` cells.
 
