@@ -17,7 +17,14 @@ module tt_um_algofoogle_tt09_ring_osc3 (
 );
 
   wire osc;
-  tapped_ring tapped_ring ( .tap(ui_in[2:0]), .y(osc) );
+  //SMELL: To have the ring start in a stable state, ideally the ring's
+  // 'ena' signal should also respect `rst_n`. This will give us a chance
+  // to have the design selected/powered, but prevent noise from flowing
+  // through the ring by holding `rst_n` low for a while at the start.
+  // This hopefully won't matter for TTIHP25a, though, as (I think)
+  // that shuttle was not power-gated per design (so all designs
+  // should be powered up all the time).
+  tapped_ring tapped_ring ( .ena(ena), .tap(ui_in[2:0]), .y(osc) );
   assign uo_out[0] = osc;
   reg [6:0] count;
   always @(posedge osc) count <= count + 1;

@@ -1,23 +1,12 @@
 `default_nettype none
 
-//NOTE: I determined this definition as follows:
-// - Searched for "sky130_fd_sc_hd__" combined with "inv", e.g.
-//      find $PDK_ROOT/$PDK -iname "*sky130_fd_sc_hd__*inv*"
-// - Found various versions, checked to find ones which are NOT bad by
-//      making sure they do NOT appear in:
-//      https://github.com/RTimothyEdwards/open_pdks/blob/master/sky130/openlane/sky130_fd_sc_hd/no_synth.cells
-// - Chose sky130_fd_sc_hd__inv_2
-// - Had a look at it in:
-//      - https://foss-eda-tools.googlesource.com/skywater-pdk/libs/sky130_fd_sc_hd/+/refs/heads/new-spice/cells/inv/sky130_fd_sc_hd__inv_2.v
-//      - https://skywater-pdk.readthedocs.io/en/main/contents/libraries/sky130_fd_sc_hd/cells/inv/README.html
-// - I was informed by my own former project:
-//      https://repositories.efabless.com/amm_efabless/ci2409_counter_and_vga3/blob/main/f/verilog/rtl/antenna_breaker.v
-//NOTE: Also need to make sure OpenLane RSZ_DONT_TOUCH_RX covers this?
-// (* blackbox *) module sky130_fd_sc_hd__inv_2(
-//     input A,
-//     output Y // Inverted output.
-// );
-// endmodule
+// Originally this was designed for TT09 on sky130, using the sky130_fd_sc_hd__inv_2 cell.
+// See: https://github.com/algofoogle/tt09-ring-osc3/commit/7ab74a7173a7754cd86e31105095c43051cb8716
+// It was rehardened for TTIHP25a using a sky130 "polyfill" (mapping sky130 cells to equivalent
+// cells or logic in the IHP PDK).
+// See: https://github.com/TinyTapeout/tt09-ttihp25a-reharden/blob/cfa0e6adf57c4bb4c5f6ec924ec0cc5bfb1fdfe2/hdl/tt_um_algofoogle_tt09_ring_osc3/src/sky130_polyfill.v#L389
+// Hence, where you see sky130_fd_sc_hd__inv_2 below, it maps instead to a logical complement, which in turn
+// maps to some IHP inverter cell.
 
 module amm_inverter (
     input   wire a,
@@ -49,6 +38,7 @@ module inv_chain #(
 endmodule
 
 module tapped_ring (
+    input wire ena,
     input [2:0] tap,
     output y
 );
@@ -70,5 +60,5 @@ module tapped_ring (
                 tap == 5 ?  b101:
                 tap == 6 ?  b301:
                 /*tap==7*/ b1001;
-    assign b0 = y;
+    assign b0 = y & ena;
 endmodule

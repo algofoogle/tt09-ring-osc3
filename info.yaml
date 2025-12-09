@@ -3,7 +3,7 @@ project:
   title:        "Verilog ring oscillator V3"
   author:       "algofoogle (Anton Maurovic)"
   discord:      "algofoogle"
-  description:  "sky130 inv_2 ring oscillator with externally-selectable length"
+  description:  "TTIHP25a resubmission of TT09 ring oscillator with externally-selectable length"
   language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
   clock_hz:     0       # Clock frequency in Hz (or 0 if not applicable)
 
@@ -19,6 +19,7 @@ project:
   source_files:
     - "ring_osc.v"
     - "project.v"
+    - sky130_polyfill.v
 
 # The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
 pinout:
